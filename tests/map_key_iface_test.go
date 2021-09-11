@@ -25,19 +25,11 @@ func Test_map_iface_key(t *testing.T) {
 		valType.SetIndex(&obj, &key2, pInt(9))
 		key3 := error(nil)
 		valType.SetIndex(&obj, &key3, pInt(9))
-		must.Panic(func() {
-			key4 := ""
-			valType.SetIndex(&obj, &key4, pInt(9))
-		})
 		return obj
 	}))
 	t.Run("GetIndex", testOp(func(api reflect2.API) interface{} {
 		obj := map[error]int{intError(3): 9, intError(2): 4}
 		valType := api.TypeOf(obj).(reflect2.MapType)
-		must.Panic(func() {
-			key1 := ""
-			valType.GetIndex(obj, &key1)
-		})
 		key2 := error(intError(3))
 		key3 := error(nil)
 		return []interface{}{
